@@ -1,0 +1,52 @@
+[ ca ]
+default_ca = CA_default
+[ CA_default ]
+certs = ./
+serial = serial
+database = index
+new_certs_dir = ./
+certificate = root.crt
+private_key = root.key
+default_days = 36500
+default_md  = sha256
+preserve = no
+email_in_dn  = no
+nameopt = default_ca
+certopt = default_ca
+policy = policy_match
+[ policy_match ]
+commonName = supplied
+countryName = optional
+stateOrProvinceName = optional
+organizationName = optional
+organizationalUnitName = optional
+emailAddress = optional
+[ req ]
+input_password = xxXX1234
+prompt = no
+distinguished_name  = default
+default_bits = 2048
+default_keyfile = priv.pem
+default_md = sha256
+req_extensions = v3_req
+encyrpt_key = no
+x509_extensions = v3_ca
+[ default ]
+commonName = default
+[ v3_ca ]
+subjectKeyIdentifier=hash
+authorityKeyIdentifier=keyid:always,issuer
+basicConstraints = critical,CA:true
+[ v3_intermediate_ca ]
+subjectKeyIdentifier = hash
+authorityKeyIdentifier = keyid:always,issuer
+basicConstraints = critical, CA:true, pathlen:0
+keyUsage = critical, digitalSignature, cRLSign, keyCertSign
+subjectAltName = @alt_names
+[ v3_req ]
+basicConstraints = CA:FALSE
+subjectKeyIdentifier = hash
+subjectAltName = @alt_names
+[ alt_names ]
+DNS.1 = iwtm
+IP.1 = 192.168.0.0 ПОМЕНЯТЬ

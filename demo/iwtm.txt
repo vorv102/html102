@@ -1,0 +1,13 @@
+nano /opt/iw/tm5/etc/consul/consul.json
+4RTZ5ttYY6RwIYX28XWNPw==
+
+nano /opt/iw/tm5/etc/web/conf
+
+openssl plcs12 -in ./iwtm.p12 -nokeys -out /opt/iw/tm/etc/certification/iwtm.crt -password pass:xxXX1234
+openssl plcs12 -in ./iwtm.p12 -nokeys -out /opt/iw/tm/etc/certification/iwtm.key -password pass:xxXX1234
+
+mv /root/iwtm.crt /opt/iw/tm/etc/certification
+mv /root/iwtm.key /opt/iw/tm/etc/certification
+
+nano /etc/nginx/conf.d/iwtm/conf
+systemctl restart nginx
